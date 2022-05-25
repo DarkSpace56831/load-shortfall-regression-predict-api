@@ -60,11 +60,7 @@ def _preprocess_data(data):
     # ----------- Replace this code with your own preprocessing steps --------
     #predict_vector = feature_vector_df[['Madrid_wind_speed','Bilbao_rain_1h','Valencia_wind_speed']]
     
-    # create new features
-    feature_vector_df['time']=pd.to_datetime(feature_vector_df['time'], infer_datetime_format=True) 
-    feature_vector_df['time_int']= pd.to_numeric(feature_vector_df['time'].dt.strftime("%Y%m%d%H%M%S"))
-
-    predict_vector = feature_vector_df[['time_int', 'Madrid_humidity']]
+    predict_vector = feature_vector_df[['Madrid_humidity', 'Seville_humidity']]
     # ------------------------------------------------------------------------
 
     return predict_vector
