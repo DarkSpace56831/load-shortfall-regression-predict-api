@@ -96,7 +96,7 @@ def _preprocess_data(data):
     y_df_train = feature_vector_df['load_shortfall_3h']
 
     # features for modeling
-    X_df_train = feature_vector_df.drop(labels = ['Unnamed: 0', 'time', 'load_shortfall_3h'], axis = 1)
+    X_df_train = feature_vector_df.drop(labels = ['time', 'load_shortfall_3h'], axis = 1)
 
     #Regularixing the data 
     from sklearn.preprocessing import StandardScaler
