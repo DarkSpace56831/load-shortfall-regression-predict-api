@@ -59,80 +59,12 @@ def _preprocess_data(data):
 
     # ----------- Replace this code with your own preprocessing steps --------
     #predict_vector = feature_vector_df[['Madrid_wind_speed','Bilbao_rain_1h','Valencia_wind_speed']]
-
-    # Impute Valencia_pressure with the median
-    median = feature_vector_df['Valencia_pressure'].median()
-    feature_vector_df['Valencia_pressure'].fillna(median, inplace=True)
-
+    
     # create new features
     feature_vector_df['time']=pd.to_datetime(feature_vector_df['time'], infer_datetime_format=True) 
     feature_vector_df['time_int']= pd.to_numeric(feature_vector_df['time'].dt.strftime("%Y%m%d%H%M%S"))
 
-    #Normalize 23 features
-
-
-    #replacing the string values with the numeric values
-    feature_vector_df['Valencia_wind_deg'].replace({'level_5':5, 'level_10':10, 'level_9':9, 'level_8':8, 'level_7':7, 'level_6':6,
-       'level_4':4, 'level_3':3, 'level_1':1, 'level_2':2},inplace=True)
-
-    #Replacing the string values in Seville_pressure with numeric values
-    feature_vector_df['Seville_pressure'].replace({'sp25':25, 'sp23':23, 'sp24':24, 'sp21':21, 'sp16':16, 'sp9':9, 'sp15':15, 'sp19':19,
-       'sp22':22, 'sp11':11, 'sp8':8, 'sp4':4, 'sp6':6, 'sp13':13, 'sp17':17, 'sp20':20,
-       'sp18':18, 'sp14':14, 'sp12':12, 'sp5':5, 'sp10':10, 'sp7':7, 'sp3':3, 'sp2':2, 'sp1':1},inplace=True)
-
-    
-    # features for modeling
-    feature_vector_df = feature_vector_df.drop(labels = ['Unnamed: 0', 'time', 'load_shortfall_3h'], axis = 1)
-
-
-
-    predict_vector = feature_vector_df[['Madrid_wind_speed',
- 'Valencia_wind_deg',
- 'Bilbao_rain_1h',
- 'Valencia_wind_speed',
- 'Seville_humidity',
- 'Madrid_humidity',
- 'Bilbao_clouds_all',
- 'Bilbao_wind_speed',
- 'Seville_clouds_all',
- 'Bilbao_wind_deg',
- 'Barcelona_wind_speed',
- 'Barcelona_wind_deg',
- 'Madrid_clouds_all',
- 'Seville_wind_speed',
- 'Barcelona_rain_1h',
- 'Seville_pressure',
- 'Seville_rain_1h',
- 'Bilbao_snow_3h',
- 'Barcelona_pressure',
- 'Seville_rain_3h',
- 'Madrid_rain_1h',
- 'Barcelona_rain_3h',
- 'Valencia_snow_3h',
- 'Madrid_weather_id',
- 'Barcelona_weather_id',
- 'Bilbao_pressure',
- 'Seville_weather_id',
- 'Valencia_pressure',
- 'Seville_temp_max',
- 'Madrid_pressure',
- 'Valencia_temp_max',
- 'Valencia_temp',
- 'Bilbao_weather_id',
- 'Seville_temp',
- 'Valencia_humidity',
- 'Valencia_temp_min',
- 'Barcelona_temp_max',
- 'Madrid_temp_max',
- 'Barcelona_temp',
- 'Bilbao_temp_min',
- 'Bilbao_temp',
- 'Barcelona_temp_min',
- 'Bilbao_temp_max',
- 'Seville_temp_min',
- 'Madrid_temp',
- 'Madrid_temp_min',
- 'time_int']]
+    predict_vector = feature_vector_df[['time_int', 'Madrid_humidity']]
     # ------------------------------------------------------------------------
 
     return predict_vector
