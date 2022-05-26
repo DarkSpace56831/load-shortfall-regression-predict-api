@@ -70,17 +70,6 @@ def _preprocess_data(data):
     feature_vector_df['time_int']= pd.to_numeric(feature_vector_df['time'].dt.strftime("%Y%m%d%H%M%S"))
 
     #Normalize 23 features
-    features = ['Bilbao_pressure', 'Madrid_weather_id', 'Barcelona_weather_id', 'Seville_weather_id',
-            'Valencia_pressure', 'Madrid_pressure', 'Bilbao_weather_id', 'Madrid_wind_speed',
-            'Bilbao_rain_1h', 'Valencia_wind_speed', 'Bilbao_wind_speed', 'Seville_clouds_all',
-            'Barcelona_wind_speed', 'Madrid_clouds_all', 'Seville_wind_speed', 'Barcelona_rain_1h',
-            'Seville_rain_1h', 'Bilbao_snow_3h', 'Barcelona_pressure', 'Seville_rain_3h',
-            'Madrid_rain_1h', 'Barcelona_rain_3h', 'Valencia_snow_3h']
-
-    from sklearn.preprocessing import MinMaxScaler
-    normalize = MinMaxScaler()
-
-    feature_vector_df[features]=normalize.fit_transform(feature_vector_df[features])
 
     #replacing the string values with the numeric values
     feature_vector_df['Valencia_wind_deg'].replace({'level_5':5, 'level_10':10, 'level_9':9, 'level_8':8, 'level_7':7, 'level_6':6,
