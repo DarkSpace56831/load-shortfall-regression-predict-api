@@ -93,22 +93,22 @@ def _preprocess_data(data):
        'sp18':18, 'sp14':14, 'sp12':12, 'sp5':5, 'sp10':10, 'sp7':7, 'sp3':3, 'sp2':2, 'sp1':1},inplace=True)
     
     # target variable, the variable we want to predict
-    y_df_train = feature_vector_df['load_shortfall_3h']
+    #y_df_train = feature_vector_df['load_shortfall_3h']
 
     # features for modeling
-    X_df_train = feature_vector_df.drop(labels = ['time', 'load_shortfall_3h'], axis = 1)
+    #feature_vector_df = feature_vector_df.drop(labels = ['time', 'load_shortfall_3h'], axis = 1)
 
     #Regularixing the data 
-    from sklearn.preprocessing import StandardScaler
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X_df_train)
-    X_standardise = pd.DataFrame(X_scaled,columns=X_df_train.columns)
-    X_standardise.head()
+   # from sklearn.preprocessing import StandardScaler
+    #scaler = StandardScaler()
+    #X_scaled = scaler.fit_transform(X_df_train)
+    #X_standardise = pd.DataFrame(X_scaled,columns=X_df_train.columns)
+    #X_standardise.head()
 
     # create targets and features dataset
-    X_train, X_test, y_train, y_test = train_test_split(X_standardise, y_df_train, test_size = 0.3, random_state = 6)
+    #X_train, X_test, y_train, y_test = train_test_split(X_standardise, y_df_train, test_size = 0.3, random_state = 6)
 
-    predict_vector = X_train.copy()
+    predict_vector =  feature_vector_df.drop(labels = ['time'], axis = 1)
     # ------------------------------------------------------------------------
 
     return predict_vector
